@@ -4,6 +4,9 @@
 #include <boost/asio.hpp>
 #include <iostream>
 #include <memory>
+#include <map>
+#include <string>
+#include <unordered_map>
 
 namespace beast = boost::beast;         // from <boost/beast.hpp>
 namespace http = beast::http;           // from <boost/beast/http.hpp>

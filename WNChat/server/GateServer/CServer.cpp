@@ -1,7 +1,7 @@
 #include "CServer.h"
 #include "HttpConnection.h"
 
-CServer::CServer(net::io_context& io_context, unsigned short& port)
+CServer::CServer(net::io_context& io_context, const unsigned short& port)
 	: io_context_(io_context)
 	, acceptor_(io_context, tcp::endpoint(tcp::v4(), port))
 	, socket_(io_context) {

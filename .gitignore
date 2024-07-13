@@ -1,0 +1,4 @@
+# 编译文件夹
+WNChat/server/GateServer/x64
+# 编译配置
+WNChat/server/GateServer/.vs

@@ -1,11 +1,14 @@
 #pragma once
 #include "common.h"
 
+class LogicSystem;
 /**
 * @brief HttpConnection 提供管理连接的功能
 */
 class HttpConnection : public std::enable_shared_from_this<HttpConnection> {
 public:
+	friend class LogicSystem;
+
 	HttpConnection(tcp::socket socket);
 	void Start();
 

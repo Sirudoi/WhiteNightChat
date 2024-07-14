@@ -2,6 +2,7 @@
 #include <boost/beast/http.hpp>
 #include <boost/beast.hpp>
 #include <boost/asio.hpp>
+#include <boost/url.hpp>
 #include <iostream>
 #include <memory>
 #include <map>

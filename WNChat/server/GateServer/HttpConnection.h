@@ -23,4 +23,5 @@ private:
 	http::response<http::dynamic_body> response_;
 	net::steady_timer deadline_{ 
 		socket_.get_executor(), std::chrono::seconds(60) };	// 定时器,设定60秒判断请求是否超时
+	boost::urls::url_view url_;
 };

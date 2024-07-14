@@ -37,15 +37,15 @@ void HttpConnection::HandleRequest() {
 	// 获取版本
 	response_.version(request_.version());
 	response_.keep_alive(false);
+	url_ = request_.target();
 	if (request_.method() == http::verb::get) {
 		// 交由注册对应路由
-		bool res = LogicSystem::GetInstance()->HandleGet(request_.target(), shared_from_this());
-		//bool res = true;
+		bool res = LogicSystem::GetInstance()->HandleGet(url_.path(), shared_from_this());
 		// 路由失败
-		if (res) {
+		response_.set(http::field::content_type, "text/plain");
+		if (!res) {
 			response_.result(http::status::not_found);
-			response_.set(http::field::content_type, "text/plain");
-			beast::ostream(response_.body()) << "url not found\n";
+			beast::ostream(response_.body()) << "url not found\r\n";
 			// 客户端应答
 			WriteResponse();
 			return;
@@ -87,3 +87,22 @@ void HttpConnection::CheckDeadline() {
 		}
 		});
 }
+
+/**
+* @brief 获取Get请求携带的参数
+*/
+//void HttpConnection::ParseGetParam() {
+//	auto url = request_.target();
+//	auto pos = url.find('?');
+//	// 无参数
+//	if (pos == std::string::npos) {
+//		get_url_ = url;
+//		return;
+//	}
+//
+//	// 获取请求路由
+//	get_url_ = url.substr(0, pos);
+//	std::string key{};
+//	std::string value{};
+//
+//}
